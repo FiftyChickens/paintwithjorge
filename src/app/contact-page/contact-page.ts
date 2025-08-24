@@ -84,6 +84,28 @@ import { Component } from '@angular/core';
               services
             </p>
           </div>
+
+          <!-- Website Creator -->
+          <div class="contact-card creator-card">
+            <h3>Website Development</h3>
+            <p>Professional website designed and developed by</p>
+            <div class="creator-info">
+              <a
+                href="https://www.linkedin.com/in/bryan-vu-/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="creator-link"
+              >
+                <span class="creator-name">Bryan Vu</span>
+                <span class="creator-title">Web Developer & Designer</span>
+              </a>
+              <div class="creator-tags">
+                <span class="tag">Angular</span>
+                <span class="tag">Responsive Design</span>
+                <span class="tag">UI/UX</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -203,92 +225,82 @@ import { Component } from '@angular/core';
       transform: translateY(-2px);
     }
     
-    .link-arrow {
-      transition: transform 0.3s ease;
-    }
-    
     .contact-link:hover .link-arrow {
       transform: translateX(3px);
     }
     
-    .service-area {
+    /* Creator Card Specific Styles */
+    .creator-card {
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      color: white;
+    }
+    
+    .creator-card::before {
+      background: linear-gradient(90deg, #ffd700, #ffed4e);
+    }
+    
+    .creator-card .contact-icon {
+      color: #ffd700;
+    }
+    
+    .creator-card h3 {
+      color: white;
+    }
+    
+    .creator-card p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .creator-info {
+      margin-top: 1.5rem;
+    }
+    
+    .creator-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: white !important;
+      padding: 1rem;
+      border: 2px solid #ffd700;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
+    }
+    
+    .creator-link:hover {
+      background: rgba(255, 215, 0, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .creator-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 0.25rem;
+    }
+    
+    .creator-title {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0.5rem;
+    }
+    
+    .creator-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       justify-content: center;
     }
     
-    .area-badge {
-      background: linear-gradient(135deg, #8b0000 0%, #c0392b 100%);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
+    .tag {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffd700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
       font-weight: 500;
-    }
-    
-    .hours-list {
-      text-align: left;
-    }
-    
-    .hour-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #f1f1f1;
-    }
-    
-    .hour-item:last-child {
-      border-bottom: none;
-    }
-    
-    .day {
-      font-weight: 600;
-      color: #2c3e50;
-    }
-    
-    .time {
-      color: #7f8c8d;
-    }
-    
-    .cta-section {
-      background: white;
-      border-radius: 20px;
-      padding: 3rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-      text-align: center;
-    }
-    
-    .cta-section h3 {
-      font-size: 2rem;
-      color: #2c3e50;
-      margin-bottom: 2rem;
-      font-weight: 600;
-    }
-    
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    
-    .benefit-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem;
-      background: #f8f9fa;
-      border-radius: 10px;
-      font-weight: 500;
-    }
-    
-    .benefit-icon {
-      color: #8b0000;
-      font-weight: bold;
-      font-size: 1.2rem;
+      border: 1px solid rgba(255, 215, 0, 0.3);
     }
     
     /* Responsive Design */
@@ -309,17 +321,18 @@ import { Component } from '@angular/core';
         padding: 2rem 1.5rem;
       }
       
-      .cta-section {
-        padding: 2rem 1.5rem;
+      .creator-tags {
+        gap: 0.25rem;
+      }
+      
+      .tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
       }
     }
     
     @media (min-width: 768px) {
       .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .benefits-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }

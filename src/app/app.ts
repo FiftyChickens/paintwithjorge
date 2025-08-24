@@ -27,17 +27,6 @@ import { RouterOutlet, RouterLink } from '@angular/router';
     <footer class="main-footer">
       <div class="footer-content">
         <p>Jorge's Painting Services LLC.</p>
-        <p class="creator-link">
-          Created by
-          <a
-            href="https://www.linkedin.com/in/bryan-vu-/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="creator-anchor"
-          >
-            Bryan Vu
-          </a>
-        </p>
       </div>
     </footer>
   `,
@@ -129,14 +118,6 @@ import { RouterOutlet, RouterLink } from '@angular/router';
       margin: 0.5rem 0;
       color: white;
       font-size: 0.9rem;
-    }
-    
-    .creator-link {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.25rem;
-      flex-wrap: wrap;
     }
     
     .creator-anchor {
