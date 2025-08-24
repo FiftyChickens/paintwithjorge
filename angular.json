@@ -82,6 +82,7 @@
           "builder": "@netlify-builder/deploy:deploy",
           "options": {
             "outputPath": "dist/paintwithjorge/browser",
+            "netlifyToken": "",
             "siteId": ""
           }
         }
