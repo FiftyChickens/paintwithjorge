@@ -7,9 +7,9 @@ import { RouterOutlet, RouterLink } from '@angular/router';
   imports: [RouterOutlet, RouterLink],
   template: `
     <nav class="main-nav">
+      <img src="logo.png" alt="Jorge's Painting" />
       <div class="nav-container">
         <a routerLink="/" class="nav-logo">
-          <img src="logo.png" alt="Jorge's Painting" width="40" height="40" />
           <span>JORGE'S PAINTING SERVICES</span>
         </a>
         <div class="nav-links">
@@ -48,6 +48,14 @@ import { RouterOutlet, RouterLink } from '@angular/router';
       position: sticky;
       top: 0;
       z-index: 1000;
+      display: flex;
+    }
+    
+    .main-nav img {
+      margin-right: 0.5rem;
+      margin-left: auto;
+      width: 50px;
+      height: 50px;
     }
     
     .nav-container {
@@ -68,9 +76,6 @@ import { RouterOutlet, RouterLink } from '@angular/router';
       font-size: 1.2rem;
     }
     
-    .nav-logo img {
-      margin-right: 0.5rem;
-    }
     
     .nav-links {
       display: flex;
