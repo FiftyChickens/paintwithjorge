@@ -81,7 +81,7 @@ import { Component } from '@angular/core';
             <h3>Service Area</h3>
             <p>
               Proudly serving the Greater Minneapolis, St. Paul Area community with quality painting
-              services
+              services. Working out of Osseo/Dayton MN.
             </p>
           </div>
 
