@@ -22,8 +22,6 @@ import { PaintingServices } from '../components/painting-services/painting-servi
         </div>
       </div>
     </section>
-
-    <!-- Replace features section with Painting Services component -->
     <app-painting-services />
   `,
   styles: `

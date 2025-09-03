@@ -30,7 +30,7 @@ import { Component } from '@angular/core';
                 />
               </svg>
             </div>
-            <h3>Call Us Directly</h3>
+            <h3>Call Directly</h3>
             <p>Speak with Jorge for immediate assistance and quick estimates</p>
             <a href="tel:+16123872972" class="contact-link">
               <span class="link-text">(612) 387-2972</span>

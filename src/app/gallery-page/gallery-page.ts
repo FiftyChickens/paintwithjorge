@@ -284,22 +284,22 @@ export class GalleryPage {
   galleryImages = [
     {
       src: 'photos/firePlace_before.jpg',
-      alt: 'Fireplace before painting',
+      alt: 'Interior painting/Fireplace before painting',
       caption: 'Fireplace Before',
     },
     {
       src: 'photos/firePlace_after.jpg',
-      alt: 'Fireplace after painting',
+      alt: 'Interior painting/Fireplace after painting',
       caption: 'Fireplace After',
     },
     {
       src: 'photos/porch_before.jpg',
-      alt: 'Porch before painting',
+      alt: 'Exterior painting/Porch before painting',
       caption: 'Porch Before ',
     },
     {
       src: 'photos/porch_after.jpg',
-      alt: 'Porch after painting',
+      alt: 'Exterior painting/Porch after painting',
       caption: 'Porch After',
     },
   ];
