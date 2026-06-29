@@ -32,10 +32,12 @@ import { Component } from '@angular/core';
             </div>
             <h3>Call Directly</h3>
             <p>Speak with Jorge for immediate assistance and quick estimates</p>
-            <a href="tel:+16123872972" class="contact-link">
-              <span class="link-text">(612) 387-2972</span>
-              <span class="link-arrow">→</span>
-            </a>
+            <address>
+              <a href="tel:+16123872972" class="contact-link">
+                <span class="link-text">(612) 387-2972</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </address>
           </div>
 
           <!-- Email Contact -->
@@ -57,10 +59,12 @@ import { Component } from '@angular/core';
             </div>
             <h3>Send Us an Email</h3>
             <p>Detailed project inquiries? Email us for comprehensive estimates</p>
-            <a href="mailto:jorge@jorgespaintingservices.com" class="contact-link">
-              <span class="link-text">jorge@jorgespaintingservices.com</span>
-              <span class="link-arrow">→</span>
-            </a>
+            <address>
+              <a href="mailto:jorge@jorgespaintingservices.com" class="contact-link">
+                <span class="link-text">jorge@jorgespaintingservices.com</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </address>
           </div>
 
           <!-- Service Area -->
@@ -84,28 +88,6 @@ import { Component } from '@angular/core';
               services. Working out of Osseo/Dayton MN.
             </p>
           </div>
-
-          <!-- Website Creator -->
-          <div class="contact-card creator-card">
-            <h3>Website Development</h3>
-            <p>Professional website designed and developed by</p>
-            <div class="creator-info">
-              <a
-                href="https://www.linkedin.com/in/bryan-vu-/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="creator-link"
-              >
-                <span class="creator-name">Bryan Vu</span>
-                <span class="creator-title">Web Developer & Designer</span>
-              </a>
-              <div class="creator-tags">
-                <span class="tag">Angular</span>
-                <span class="tag">Responsive Design</span>
-                <span class="tag">UI/UX</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -117,17 +99,17 @@ import { Component } from '@angular/core';
       padding: 4rem 1rem;
       min-height: 100vh;
     }
-    
+
     .contact-container {
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
     .contact-header {
       text-align: center;
       margin-bottom: 4rem;
     }
-    
+
     .contact-header h2 {
       font-size: 3rem;
       font-weight: 700;
@@ -138,7 +120,7 @@ import { Component } from '@angular/core';
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
+
     .contact-subtitle {
       font-size: 1.3rem;
       color: #7f8c8d;
@@ -147,14 +129,13 @@ import { Component } from '@angular/core';
       max-width: 600px;
       margin: 0 auto;
     }
-    
+
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
-      margin-bottom: 4rem;
     }
-    
+
     .contact-card {
       background: white;
       border-radius: 20px;
@@ -166,7 +147,7 @@ import { Component } from '@angular/core';
       position: relative;
       overflow: hidden;
     }
-    
+
     .contact-card::before {
       content: '';
       position: absolute;
@@ -178,34 +159,34 @@ import { Component } from '@angular/core';
       transform: scaleX(0);
       transition: transform 0.3s ease;
     }
-    
+
     .contact-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
     }
-    
+
     .contact-card:hover::before {
       transform: scaleX(1);
     }
-    
+
     .contact-icon {
       color: #8b0000;
       margin-bottom: 1.5rem;
     }
-    
+
     .contact-card h3 {
       font-size: 1.5rem;
       font-weight: 600;
       color: #2c3e50;
       margin-bottom: 1rem;
     }
-    
+
     .contact-card p {
       color: #7f8c8d;
       line-height: 1.6;
       margin-bottom: 1.5rem;
     }
-    
+
     .contact-link {
       display: inline-flex;
       align-items: center;
@@ -218,43 +199,43 @@ import { Component } from '@angular/core';
       border: 2px solid #8b0000;
       border-radius: 10px;
     }
-    
+
     .contact-link:hover {
       background: #8b0000;
       color: white;
       transform: translateY(-2px);
     }
-    
+
     .contact-link:hover .link-arrow {
       transform: translateX(3px);
     }
-    
+
     /* Creator Card Specific Styles */
     .creator-card {
       background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
       color: white;
     }
-    
+
     .creator-card::before {
       background: linear-gradient(90deg, #ffd700, #ffed4e);
     }
-    
+
     .creator-card .contact-icon {
       color: #ffd700;
     }
-    
+
     .creator-card h3 {
       color: white;
     }
-    
+
     .creator-card p {
       color: rgba(255, 255, 255, 0.8);
     }
-    
+
     .creator-info {
       margin-top: 1.5rem;
     }
-    
+
     .creator-link {
       display: flex;
       flex-direction: column;
@@ -267,32 +248,32 @@ import { Component } from '@angular/core';
       transition: all 0.3s ease;
       margin-bottom: 1rem;
     }
-    
+
     .creator-link:hover {
       background: rgba(255, 215, 0, 0.1);
       transform: translateY(-2px);
     }
-    
+
     .creator-name {
       font-size: 1.3rem;
       font-weight: 700;
       color: #ffd700;
       margin-bottom: 0.25rem;
     }
-    
+
     .creator-title {
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.8);
       margin-bottom: 0.5rem;
     }
-    
+
     .creator-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       justify-content: center;
     }
-    
+
     .tag {
       background: rgba(255, 255, 255, 0.1);
       color: #ffd700;
@@ -302,56 +283,56 @@ import { Component } from '@angular/core';
       font-weight: 500;
       border: 1px solid rgba(255, 215, 0, 0.3);
     }
-    
+
     /* Responsive Design */
     @media (max-width: 576px) {
       .contact {
         padding: 2rem 1rem;
       }
-      
+
       .contact-header h2 {
         font-size: 2.2rem;
       }
-      
+
       .contact-subtitle {
         font-size: 1.1rem;
       }
-      
+
       .contact-card {
         padding: 2rem 1.5rem;
       }
-      
+
       .creator-tags {
         gap: 0.25rem;
       }
-      
+
       .tag {
         font-size: 0.7rem;
         padding: 0.2rem 0.5rem;
       }
     }
-    
+
     @media (min-width: 768px) {
       .contact-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-    
+
     @media (min-width: 992px) {
       .contact {
         padding: 5rem 2rem;
       }
-      
+
       .contact-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 3rem;
       }
-      
+
       .contact-card {
         padding: 3rem;
       }
     }
-    
+
     @media (min-width: 1200px) {
       .contact-grid {
         grid-template-columns: repeat(2, 1fr);
