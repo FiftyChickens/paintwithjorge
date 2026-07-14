@@ -41,7 +41,11 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
           target="_blank"
           rel="noopener noreferrer"
           class="creator-link"
+<<<<<<< HEAD
           >Website Developer</a
+=======
+          >Website Devloper</a
+>>>>>>> refs/remotes/origin/main
         >
       </div>
     </footer>
@@ -97,10 +101,13 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
       margin: 0;
     }
 
+<<<<<<< HEAD
     .nav-links li {
       margin: 0;
     }
 
+=======
+>>>>>>> refs/remotes/origin/main
     .nav-links a {
       color: white;
       text-decoration: none;

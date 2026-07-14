@@ -38,7 +38,11 @@ import { Component } from '@angular/core';
                 <span class="link-arrow">→</span>
               </a>
             </address>
+<<<<<<< HEAD
           </article>
+=======
+          </div>
+>>>>>>> refs/remotes/origin/main
 
           <!-- Email Contact -->
           <article class="contact-card">
@@ -65,7 +69,11 @@ import { Component } from '@angular/core';
                 <span class="link-arrow">→</span>
               </a>
             </address>
+<<<<<<< HEAD
           </article>
+=======
+          </div>
+>>>>>>> refs/remotes/origin/main
 
           <!-- Service Area -->
           <article class="contact-card">
@@ -87,7 +95,11 @@ import { Component } from '@angular/core';
               Proudly serving the Greater Minneapolis, St. Paul Area community with quality painting
               services. Working out of Osseo/Dayton MN.
             </p>
+<<<<<<< HEAD
           </article>
+=======
+          </div>
+>>>>>>> refs/remotes/origin/main
         </div>
       </div>
     </section>
