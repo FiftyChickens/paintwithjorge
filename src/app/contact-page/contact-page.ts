@@ -4,10 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-contact-page',
   standalone: true,
   template: `
-    <section class="contact">
+    <section class="contact" aria-labelledby="contact-heading">
       <div class="contact-container">
         <div class="contact-header">
-          <h2>Get Your Free Estimate</h2>
+          <h1 id="contact-heading">Get Your Free Estimate</h1>
           <p class="contact-subtitle">
             Ready to transform your space? Let's discuss your painting project
           </p>
@@ -15,7 +15,7 @@ import { Component } from '@angular/core';
 
         <div class="contact-grid">
           <!-- Phone Contact -->
-          <div class="contact-card">
+          <article class="contact-card">
             <div class="contact-icon">
               <svg
                 width="48"
@@ -38,10 +38,10 @@ import { Component } from '@angular/core';
                 <span class="link-arrow">→</span>
               </a>
             </address>
-          </div>
+          </article>
 
           <!-- Email Contact -->
-          <div class="contact-card">
+          <article class="contact-card">
             <div class="contact-icon">
               <svg
                 width="48"
@@ -65,10 +65,10 @@ import { Component } from '@angular/core';
                 <span class="link-arrow">→</span>
               </a>
             </address>
-          </div>
+          </article>
 
           <!-- Service Area -->
-          <div class="contact-card">
+          <article class="contact-card">
             <div class="contact-icon">
               <svg
                 width="48"
@@ -87,7 +87,7 @@ import { Component } from '@angular/core';
               Proudly serving the Greater Minneapolis, St. Paul Area community with quality painting
               services. Working out of Osseo/Dayton MN.
             </p>
-          </div>
+          </article>
         </div>
       </div>
     </section>

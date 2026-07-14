@@ -1,24 +1,33 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: `
-    <nav class="main-nav">
-      <div class="nav-container">
-        <a routerLink="/" class="nav-logo">
-          <img src="logo.png" alt="Jorge's Painting" class="logo-image" />
-          <span class="logo-text">JORGE'S PAINTING SERVICES</span>
-        </a>
-        <div class="nav-links">
-          <a routerLink="/" routerLinkActive="active">Home</a>
-          <a routerLink="/gallery" routerLinkActive="active">Gallery</a>
-          <a routerLink="/contact" routerLinkActive="active">Contact</a>
+    <header class="site-header">
+      <nav class="main-nav" aria-label="Primary navigation">
+        <div class="nav-container">
+          <a routerLink="/" class="nav-logo" aria-label="Jorge's Painting Services home">
+            <img src="logo.png" alt="Jorge's Painting" class="logo-image" />
+            <span class="logo-text">JORGE'S PAINTING SERVICES</span>
+          </a>
+          <ul class="nav-links">
+            <li>
+              <a
+                routerLink="/"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Home</a
+              >
+            </li>
+            <li><a routerLink="/gallery" routerLinkActive="active">Gallery</a></li>
+            <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+          </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <main class="main-content">
       <router-outlet></router-outlet>
@@ -32,7 +41,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
           target="_blank"
           rel="noopener noreferrer"
           class="creator-link"
-          >Website Devloper</a
+          >Website Developer</a
         >
       </div>
     </footer>
@@ -83,6 +92,13 @@ import { RouterOutlet, RouterLink } from '@angular/router';
       gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links li {
+      margin: 0;
     }
 
     .nav-links a {

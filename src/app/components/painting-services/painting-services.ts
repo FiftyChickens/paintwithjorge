@@ -1,44 +1,46 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-painting-services',
   standalone: true,
-  imports: [RouterLink],
+  imports: [CommonModule, RouterLink],
   template: `
-    <section class="services-section" [class.home-page]="isHomePage">
+    <section
+      class="services-section"
+      [class.home-page]="isHomePage"
+      aria-labelledby="services-heading"
+    >
       <div class="services-header">
-        <h2 class="services-title">
+        <h2 id="services-heading" class="services-title">
           {{ isHomePage ? 'Our Premium Services' : 'Professional Painting Services' }}
         </h2>
         <p class="services-subtitle">Transforming spaces with precision and expertise</p>
       </div>
 
       <div class="services-container">
-        @for (service of services; track service.category) {
-        <div class="service-card">
+        <article class="service-card" *ngFor="let service of services">
           <div class="service-icon">
-            @if (service.category === 'interior') {
-            <span>🏠</span>
-            } @else {
-            <span>🏡</span>
-            }
+            <span aria-hidden="true">
+              {{ service.category === 'interior' ? '🏠' : '🏡' }}
+            </span>
+            <span class="visually-hidden">
+              {{ service.category === 'interior' ? 'Interior service' : 'Exterior service' }}
+            </span>
           </div>
 
           <h3 class="service-title">{{ service.title }}</h3>
 
           <ul class="services-list">
-            @for (item of service.items; track item; let i = $index) {
-            <li class="service-item">
+            <li class="service-item" *ngFor="let item of service.items; let i = index">
               <span class="item-number">{{ i + 1 }}.</span>
               <span class="item-text">{{ item }}</span>
             </li>
-            }
           </ul>
 
-          @if (isHomePage) {
-          <div class="service-cta">
-            <a routerLink="/services" class="cta-button">
+          <div class="service-cta" *ngIf="isHomePage">
+            <a routerLink="/contact" class="cta-button">
               Learn More
               <svg
                 width="16"
@@ -52,14 +54,11 @@ import { RouterLink } from '@angular/router';
               </svg>
             </a>
           </div>
-          }
-        </div>
-        }
+        </article>
       </div>
 
-      @if (isHomePage) {
-      <div class="all-services-cta">
-        <a routerLink="/services" class="primary-button">
+      <div class="all-services-cta" *ngIf="isHomePage">
+        <a routerLink="/contact" class="primary-button">
           View All Services
           <svg
             width="18"
@@ -73,7 +72,6 @@ import { RouterLink } from '@angular/router';
           </svg>
         </a>
       </div>
-      }
     </section>
   `,
   styles: `
@@ -81,7 +79,7 @@ import { RouterLink } from '@angular/router';
       padding: 4rem 1rem;
       background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
     }
-    
+
     .services-header {
       text-align: center;
       margin-bottom: 3rem;
@@ -89,7 +87,7 @@ import { RouterLink } from '@angular/router';
       margin-left: auto;
       margin-right: auto;
     }
-    
+
     .services-title {
       font-size: 2.5rem;
       font-weight: 700;
@@ -100,14 +98,14 @@ import { RouterLink } from '@angular/router';
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
+
     .services-subtitle {
       font-size: 1.2rem;
       color: #7f8c8d;
       font-weight: 400;
       line-height: 1.6;
     }
-    
+
     .services-container {
       display: grid;
       grid-template-columns: 1fr;
@@ -115,7 +113,7 @@ import { RouterLink } from '@angular/router';
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
     .service-card {
       background: white;
       border-radius: 16px;
@@ -126,7 +124,7 @@ import { RouterLink } from '@angular/router';
       position: relative;
       overflow: hidden;
     }
-    
+
     .service-card::before {
       content: '';
       position: absolute;
@@ -138,22 +136,22 @@ import { RouterLink } from '@angular/router';
       transform: scaleX(0);
       transition: transform 0.3s ease;
     }
-    
+
     .service-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
     }
-    
+
     .service-card:hover::before {
       transform: scaleX(1);
     }
-    
+
     .service-icon {
       text-align: center;
       margin-bottom: 1.5rem;
       font-size: 3rem;
     }
-    
+
     .service-title {
       text-align: center;
       font-size: 1.5rem;
@@ -162,7 +160,7 @@ import { RouterLink } from '@angular/router';
       margin-bottom: 2rem;
       position: relative;
     }
-    
+
     .service-title::after {
       content: '';
       position: absolute;
@@ -174,13 +172,13 @@ import { RouterLink } from '@angular/router';
       background: linear-gradient(90deg, #8b0000, #c0392b);
       border-radius: 2px;
     }
-    
+
     .services-list {
       list-style: none;
       padding: 0;
       margin: 0 0 2rem 0;
     }
-    
+
     .service-item {
       display: flex;
       align-items: flex-start;
@@ -192,30 +190,30 @@ import { RouterLink } from '@angular/router';
       border-left: 4px solid #8b0000;
       transition: all 0.3s ease;
     }
-    
+
     .service-item:hover {
       background: #e8f4f8;
       transform: translateX(5px);
     }
-    
+
     .item-number {
       font-weight: 700;
       color: #8b0000;
       font-size: 1.1rem;
       min-width: 1.5rem;
     }
-    
+
     .item-text {
       color: #2c3e50;
       line-height: 1.6;
       flex: 1;
     }
-    
+
     .service-cta {
       text-align: center;
       margin-top: 1.5rem;
     }
-    
+
     .cta-button {
       display: inline-flex;
       align-items: center;
@@ -229,20 +227,20 @@ import { RouterLink } from '@angular/router';
       font-weight: 600;
       transition: all 0.3s ease;
     }
-    
+
     .cta-button:hover {
       background: #8b0000;
       color: white;
       transform: translateY(-2px);
     }
-    
+
     .all-services-cta {
       text-align: center;
       margin-top: 3rem;
       padding-top: 2rem;
       border-top: 1px solid #e8e8e8;
     }
-    
+
     .primary-button {
       display: inline-flex;
       align-items: center;
@@ -257,64 +255,76 @@ import { RouterLink } from '@angular/router';
       transition: all 0.3s ease;
       box-shadow: 0 5px 20px rgba(139, 0, 0, 0.3);
     }
-    
+
     .primary-button:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(139, 0, 0, 0.4);
     }
-    
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* Responsive Design */
     @media (max-width: 576px) {
       .services-section {
         padding: 2.5rem 1rem;
       }
-      
+
       .services-title {
         font-size: 2rem;
       }
-      
+
       .services-subtitle {
         font-size: 1.1rem;
       }
-      
+
       .service-card {
         padding: 2rem 1.5rem;
       }
-      
+
       .service-icon {
         font-size: 2.5rem;
       }
-      
+
       .service-title {
         font-size: 1.3rem;
       }
     }
-    
+
     @media (min-width: 768px) {
       .services-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 2.5rem;
       }
-      
+
       .services-title {
         font-size: 3rem;
       }
     }
-    
+
     @media (min-width: 992px) {
       .services-section {
         padding: 5rem 2rem;
       }
-      
+
       .services-container {
         gap: 3rem;
       }
-      
+
       .service-card {
         padding: 3rem;
       }
     }
-    
+
     @media (min-width: 1200px) {
       .services-container {
         gap: 4rem;

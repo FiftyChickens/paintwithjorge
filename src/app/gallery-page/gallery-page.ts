@@ -1,36 +1,58 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-gallery-page',
   standalone: true,
+  imports: [CommonModule],
   template: `
-    <section class="gallery">
-      <h2>Our Work Gallery</h2>
-      <div class="gallery-grid">
-        @for (image of galleryImages; track image.src) {
-        <div class="gallery-item">
-          <img [src]="image.src" [alt]="image.alt" loading="lazy" class="gallery-image" />
-          <div class="gallery-caption">{{ image.caption }}</div>
-          <div class="gallery-overlay">
-            <button class="view-btn" (click)="openLightbox(image)">View Larger</button>
-          </div>
-        </div>
-        } @empty {
-        <p class="no-images">No images to display</p>
-        }
+    <section class="gallery" aria-labelledby="gallery-heading">
+      <h1 id="gallery-heading">Our Work Gallery</h1>
+      <div class="gallery-grid-wrapper">
+        <ng-container *ngIf="galleryImages.length; else noImages">
+          <ul class="gallery-grid">
+            <li class="gallery-item" *ngFor="let image of galleryImages">
+              <figure>
+                <img [src]="image.src" [alt]="image.alt" loading="lazy" class="gallery-image" />
+                <figcaption class="gallery-caption">{{ image.caption }}</figcaption>
+                <div class="gallery-overlay">
+                  <button type="button" class="view-btn" (click)="openLightbox(image)">
+                    View Larger
+                  </button>
+                </div>
+              </figure>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-template #noImages>
+          <p class="no-images">No images to display</p>
+        </ng-template>
       </div>
     </section>
 
     <!-- Lightbox Modal -->
-    @if (selectedImage) {
-    <div class="lightbox" (click)="closeLightbox()">
+    <div
+      *ngIf="selectedImage"
+      class="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightbox-title"
+      (click)="closeLightbox()"
+    >
       <div class="lightbox-content" (click)="$event.stopPropagation()">
-        <button class="close-btn" (click)="closeLightbox()">×</button>
+        <h2 id="lightbox-title" class="visually-hidden">Image preview</h2>
+        <button
+          type="button"
+          class="close-btn"
+          (click)="closeLightbox()"
+          aria-label="Close image preview"
+        >
+          ×
+        </button>
         <img [src]="selectedImage.src" [alt]="selectedImage.alt" class="lightbox-image" />
         <div class="lightbox-caption">{{ selectedImage.caption }}</div>
       </div>
     </div>
-    }
   `,
   styles: `
     .gallery {
@@ -39,45 +61,55 @@ import { Component } from '@angular/core';
       color: #333;
       min-height: 100vh;
     }
-    
+
     .gallery h2 {
       text-align: center;
       margin-bottom: 2rem;
       color: #8b0000;
       font-size: 2rem;
     }
-    
+
+    .gallery-grid-wrapper {
+      display: grid;
+      gap: 1.5rem;
+    }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
-    
+
     .gallery-item {
       position: relative;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
-    
+
     .gallery-item:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     }
-    
+
     .gallery-image {
       width: 100%;
       height: 200px;
       object-fit: cover;
       transition: transform 0.3s ease;
     }
-    
+
     .gallery-item:hover .gallery-image {
       transform: scale(1.05);
     }
-    
+
     .gallery-caption {
       background: rgba(139, 0, 0, 0.9);
       color: white;
@@ -86,7 +118,7 @@ import { Component } from '@angular/core';
       font-weight: bold;
       font-size: 0.9rem;
     }
-    
+
     .gallery-overlay {
       position: absolute;
       top: 0;
@@ -100,11 +132,11 @@ import { Component } from '@angular/core';
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-    
+
     .gallery-item:hover .gallery-overlay {
       opacity: 1;
     }
-    
+
     .view-btn {
       background: #ffd700;
       color: #8b0000;
@@ -115,18 +147,18 @@ import { Component } from '@angular/core';
       cursor: pointer;
       font-size: 0.9rem;
     }
-    
+
     .view-btn:hover {
       background: #ffed4e;
     }
-    
+
     .no-images {
       text-align: center;
       grid-column: 1 / -1;
       color: #666;
       font-style: italic;
     }
-    
+
     /* Lightbox Styles */
     .lightbox {
       position: fixed;
@@ -141,7 +173,7 @@ import { Component } from '@angular/core';
       z-index: 1000;
       animation: fadeIn 0.3s ease;
     }
-    
+
     .lightbox-content {
       position: relative;
       max-width: 95%;
@@ -150,13 +182,13 @@ import { Component } from '@angular/core';
       border-radius: 8px;
       overflow: hidden;
     }
-    
+
     .lightbox-image {
       max-width: 100%;
       max-height: 60vh;
       object-fit: contain;
     }
-    
+
     .lightbox-caption {
       padding: 0.75rem;
       text-align: center;
@@ -164,7 +196,7 @@ import { Component } from '@angular/core';
       color: white;
       font-weight: bold;
     }
-    
+
     .close-btn {
       position: absolute;
       top: 0.5rem;
@@ -179,101 +211,117 @@ import { Component } from '@angular/core';
       cursor: pointer;
       z-index: 1001;
     }
-    
+
     .close-btn:hover {
       background: rgba(0, 0, 0, 0.9);
     }
-    
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* Animations */
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
-    
+
     /* SM (576px) and up */
     @media (min-width: 576px) {
       .gallery {
         padding: 2.5rem 1.5rem;
       }
-      
+
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.75rem;
       }
-      
+
       .gallery-image {
         height: 220px;
       }
     }
-    
+
     /* MD (768px) and up */
     @media (min-width: 768px) {
       .gallery {
         padding: 3rem 2rem;
       }
-      
+
       .gallery h2 {
         font-size: 2.25rem;
         margin-bottom: 2.5rem;
       }
-      
+
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
         max-width: 1200px;
         margin: 0 auto;
       }
-      
+
       .gallery-image {
         height: 250px;
       }
-      
+
       .gallery-caption {
         font-size: 1rem;
         padding: 1rem;
       }
-      
+
       .view-btn {
         padding: 0.75rem 1.5rem;
         font-size: 1rem;
       }
     }
-    
+
     /* LG (992px) and up */
     @media (min-width: 992px) {
       .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
       }
-      
+
       .gallery-image {
         height: 280px;
       }
     }
-    
+
     /* XL (1200px) and up */
     @media (min-width: 1200px) {
       .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 2.5rem;
       }
-      
+
       .gallery-image {
         height: 300px;
       }
     }
-    
+
     /* XXL (1400px) and up */
     @media (min-width: 1400px) {
       .gallery-grid {
         grid-template-columns: repeat(4, 1fr);
         max-width: 1400px;
       }
-      
+
       .lightbox-content {
         max-width: 90%;
         max-height: 90%;
       }
-      
+
       .lightbox-image {
         max-height: 70vh;
       }
