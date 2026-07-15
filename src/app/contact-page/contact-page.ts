@@ -96,7 +96,7 @@ import { Component } from '@angular/core';
     .contact {
       background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
       color: #333;
-      padding: 0rem 1rem;;
+      padding: 0rem 1rem;
     }
 
     .contact-container {
