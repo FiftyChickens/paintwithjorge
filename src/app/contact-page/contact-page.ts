@@ -96,8 +96,7 @@ import { Component } from '@angular/core';
     .contact {
       background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
       color: #333;
-      padding: 4rem 1rem;
-      min-height: 100vh;
+      padding: 0rem 1rem;;
     }
 
     .contact-container {
@@ -132,7 +131,7 @@ import { Component } from '@angular/core';
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr
       gap: 2rem;
     }
 
@@ -314,7 +313,7 @@ import { Component } from '@angular/core';
 
     @media (min-width: 768px) {
       .contact-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -335,7 +334,7 @@ import { Component } from '@angular/core';
 
     @media (min-width: 1200px) {
       .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
     }
   `,
