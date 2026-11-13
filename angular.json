@@ -18,7 +18,6 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "public/icon.png",
               "src/assets",
               "src/sitemap.xml",
               {
