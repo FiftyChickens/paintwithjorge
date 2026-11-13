@@ -12,6 +12,23 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## Gallery photos
+
+Edit `GALLERY_PROJECTS` in `src/app/gallery-page/gallery-projects.ts` to add or update projects.
+Each project has a title and one or more photos, each with a `src`, descriptive `alt` text,
+and a label. Give each perspective a distinct label so visitors can select it in the enlarged view.
+For before-and-after projects, put the before photo first and the after photo second. The card
+shows the first photo and previews the second on hover; all photos are available in the enlarged
+view. Cards crop photos to a consistent shape; the enlarged view shows the whole image.
+
+Set `featureInSlideshow: true` on up to five projects to feature their first finished photo in the
+home-page slideshow. Finished photos use `isAfter: true`. The slideshow starts paused for visitors
+who prefer reduced motion, and includes a pause control and selectable dots.
+
+The gallery preview shows every project photo with previous/next controls and position dots. Keep
+labels simple (for example, `Before` and `After`); the preview also shows the current position and
+total photo count (for example, `Before · 1 / 6`).
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
