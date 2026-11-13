@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  color-scheme: light;
+  --ink: #292a27;
+  --muted: #625f59;
+  --brand: #862b26;
+  --brand-dark: #60201d;
+  --paper: #f7f5f0;
+  --line: #e5dfd5;
+  --heading-font: Georgia, 'Times New Roman', serif;
+  --body-font: 'Segoe UI', Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--body-font); line-height: 1.6; }
+button, input, textarea, select { font: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid #bd6b51; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

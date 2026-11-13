@@ -20,4 +20,10 @@ describe('ContactPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('keeps phone and email contact links available', () => {
+    const page: HTMLElement = fixture.nativeElement;
+    expect(page.querySelector('a[href="tel:+16123872972"]')).toBeTruthy();
+    expect(page.querySelector('a[href="mailto:jorge@jorgespaintingservices.com"]')).toBeTruthy();
+  });
 });

@@ -7,328 +7,55 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink],
   template: `
-    <section
-      class="services-section"
-      [class.home-page]="isHomePage"
-      aria-labelledby="services-heading"
-    >
+    <section class="services-section" [class.home-page]="isHomePage" aria-labelledby="services-heading">
       <div class="services-header">
-        <h2 id="services-heading" class="services-title">
-          {{ isHomePage ? 'Our Premium Services' : 'Professional Painting Services' }}
-        </h2>
-        <p class="services-subtitle">Transforming spaces with precision and expertise</p>
+        <div>
+          <p class="eyebrow">WHAT WE DO</p>
+          <h2 id="services-heading">{{ isHomePage ? 'Painting & Restoration Services' : 'Professional Painting & Restoration' }}</h2>
+        </div>
+        <p class="services-subtitle">Thoughtful preparation, skilled painting, and restoration for homes and the details that make them yours.</p>
       </div>
-
       <div class="services-container">
-        <article class="service-card" *ngFor="let service of services">
-          <div class="service-icon">
-            <span aria-hidden="true">
-              {{ service.category === 'interior' ? '🏠' : '🏡' }}
-            </span>
-            <span class="visually-hidden">
-              {{ service.category === 'interior' ? 'Interior service' : 'Exterior service' }}
-            </span>
+        <article class="service-card" *ngFor="let service of services; let serviceIndex = index">
+          <div class="card-top">
+            <span class="service-number">0{{ serviceIndex + 1 }} / {{ service.category }}</span>
+            <span class="card-mark" aria-hidden="true">↗</span>
           </div>
-
-          <h3 class="service-title">{{ service.title }}</h3>
-
+          <h3>{{ service.title }}</h3>
           <ul class="services-list">
-            <li class="service-item" *ngFor="let item of service.items; let i = index">
-              <span class="item-number">{{ i + 1 }}.</span>
-              <span class="item-text">{{ item }}</span>
-            </li>
+            <li *ngFor="let item of service.items"><span class="item-mark" aria-hidden="true"></span><span>{{ item }}</span></li>
           </ul>
-
-          <div class="service-cta" *ngIf="isHomePage">
-            <a routerLink="/contact" class="cta-button">
-              Learn More
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
+          <a *ngIf="isHomePage" routerLink="/contact" class="cta-button">Learn More <span aria-hidden="true">→</span></a>
         </article>
       </div>
-
       <div class="all-services-cta" *ngIf="isHomePage">
-        <a routerLink="/contact" class="primary-button">
-          View All Services
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        <a routerLink="/contact" class="cta-button">View All Services <span aria-hidden="true">→</span></a>
       </div>
     </section>
   `,
   styles: `
-    .services-section {
-      padding: 4rem 1rem;
-      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-    }
-
-    .services-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .services-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #2c3e50;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, #8b0000 0%, #c0392b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .services-subtitle {
-      font-size: 1.2rem;
-      color: #7f8c8d;
-      font-weight: 400;
-      line-height: 1.6;
-    }
-
-    .services-container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .service-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2.5rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e8e8e8;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #8b0000, #c0392b);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-    }
-
-    .service-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .service-icon {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 3rem;
-    }
-
-    .service-title {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #2c3e50;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-
-    .service-title::after {
-      content: '';
-      position: absolute;
-      bottom: -0.75rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, #8b0000, #c0392b);
-      border-radius: 2px;
-    }
-
-    .services-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 2rem 0;
-    }
-
-    .service-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-      padding: 1rem;
-      background: #f8f9fa;
-      border-radius: 8px;
-      border-left: 4px solid #8b0000;
-      transition: all 0.3s ease;
-    }
-
-    .service-item:hover {
-      background: #e8f4f8;
-      transform: translateX(5px);
-    }
-
-    .item-number {
-      font-weight: 700;
-      color: #8b0000;
-      font-size: 1.1rem;
-      min-width: 1.5rem;
-    }
-
-    .item-text {
-      color: #2c3e50;
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .service-cta {
-      text-align: center;
-      margin-top: 1.5rem;
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background: transparent;
-      color: #8b0000;
-      text-decoration: none;
-      border: 2px solid #8b0000;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .cta-button:hover {
-      background: #8b0000;
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    .all-services-cta {
-      text-align: center;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid #e8e8e8;
-    }
-
-    .primary-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, #8b0000 0%, #c0392b 100%);
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 20px rgba(139, 0, 0, 0.3);
-    }
-
-    .primary-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(139, 0, 0, 0.4);
-    }
-
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      padding: 0;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 576px) {
-      .services-section {
-        padding: 2.5rem 1rem;
-      }
-
-      .services-title {
-        font-size: 2rem;
-      }
-
-      .services-subtitle {
-        font-size: 1.1rem;
-      }
-
-      .service-card {
-        padding: 2rem 1.5rem;
-      }
-
-      .service-icon {
-        font-size: 2.5rem;
-      }
-
-      .service-title {
-        font-size: 1.3rem;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .services-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2.5rem;
-      }
-
-      .services-title {
-        font-size: 3rem;
-      }
-    }
-
-    @media (min-width: 992px) {
-      .services-section {
-        padding: 5rem 2rem;
-      }
-
-      .services-container {
-        gap: 3rem;
-      }
-
-      .service-card {
-        padding: 3rem;
-      }
-    }
-
-    @media (min-width: 1200px) {
-      .services-container {
-        gap: 4rem;
-      }
+    .services-section { padding: clamp(4rem, 7vw, 6.5rem) 2rem; background: #fff; }
+    .services-header, .services-container, .all-services-cta { max-width: 1200px; margin-left: auto; margin-right: auto; }
+    .services-header { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2.5rem; }
+    .eyebrow { color: var(--brand); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; margin: 0 0 0.8rem; }
+    h2 { font-family: var(--heading-font); font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.1; letter-spacing: -0.035em; font-weight: 400; margin: 0; }
+    .services-subtitle { max-width: 310px; color: var(--muted); margin: 0; }
+    .services-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .service-card { padding: 2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; }
+    .card-top { display: flex; justify-content: space-between; align-items: center; }
+    .service-number { color: var(--brand); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .card-mark { color: var(--brand); font-size: 1.3rem; }
+    h3 { margin: 1.2rem 0 1.5rem; font-family: var(--heading-font); font-size: 1.8rem; font-weight: 400; }
+    .services-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+    .services-list li { display: flex; gap: 0.8rem; padding: 1rem 0; color: var(--muted); border-bottom: 1px solid var(--line); font-size: 0.93rem; }
+    .item-mark { flex: 0 0 5px; width: 5px; height: 5px; margin-top: 0.65rem; border-radius: 50%; background: var(--brand); }
+    .cta-button { display: inline-flex; gap: 1rem; margin-top: 1.5rem; color: var(--brand); font-weight: 700; text-decoration: none; }
+    .cta-button:hover { text-decoration: underline; }
+    @media (max-width: 760px) {
+      .services-section { padding: 4rem 1.25rem; }
+      .services-header { align-items: start; flex-direction: column; gap: 1rem; }
+      .services-container { grid-template-columns: 1fr; }
+      .service-card { padding: 1.5rem; }
     }
   `,
 })
@@ -340,18 +67,36 @@ export class PaintingServices {
       category: 'interior',
       title: 'Interior Painting',
       items: [
-        'Surface preparation: patching holes, sanding, repairing cracks, and cleaning walls/ceilings',
-        'Painting and staining: applying primers, paint, and finishes on walls, ceilings, doors, trim, and cabinets',
-        'Detailing work: ensuring clean edges, smooth finishes, and consistent color coverage throughout',
+        'Careful preparation, including patching, sanding, crack repair, and cleaning',
+        'Painting walls, ceilings, doors, and trim with primers and finishes suited to each surface',
+        'Clean edges and consistent color for a polished room-by-room result',
       ],
     },
     {
       category: 'exterior',
-      title: 'Exterior Painting',
+      title: 'Exterior Painting & Historic Restoration',
       items: [
-        'Surface preparation: power washing, scraping loose paint, sanding, caulking gaps, and repairing wood/siding',
-        'Protective coatings: applying weather-resistant paints, stains, and sealers for durability against elements',
-        'Large-scale application: professional painting of siding, decks, fences, garages, and exterior trim',
+        'Exterior repaints for homes and rustic cabins, including siding, doors, and trim',
+        'Historic home restoration with detailed paint scraping, siding repairs, thorough preparation, and a fresh finish that respects the home’s character',
+        'Protective coatings, caulking, and surface repairs to help finishes stand up to the elements',
+      ],
+    },
+    {
+      category: 'wood restoration',
+      title: 'Deck & Outdoor Wood Restoration',
+      items: [
+        'Deck restoration with careful cleaning, preparation, and renewed protective finishes',
+        'Outdoor wood furniture restoration to refresh and protect well-used pieces',
+        'Staining and sealing options to bring out the natural character of exterior wood',
+      ],
+    },
+    {
+      category: 'specialty finishes',
+      title: 'Cabinet & Specialty Finishing',
+      items: [
+        'Custom garage cabinet transformations, professionally finished and painted',
+        'Elevator interior restoration with detailed surface preparation and a refreshed finish',
+        'Thoughtful coatings and finish work for distinctive interior projects',
       ],
     },
   ];
