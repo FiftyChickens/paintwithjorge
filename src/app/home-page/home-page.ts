@@ -96,7 +96,12 @@ export class HomePage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const window = this.document.defaultView;
-    if (window && this.afterPhotos.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (
+      window &&
+      typeof window.matchMedia === 'function' &&
+      this.afterPhotos.length > 1 &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
       this.startSlideshow();
     }
   }

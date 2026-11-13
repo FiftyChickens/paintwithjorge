@@ -237,7 +237,7 @@ export class App {
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({ name: 'twitter:description', content: description });
 
-    const canonicalUrl = new URL(this.router.url, this.document.baseURI);
+    const canonicalUrl = new URL(this.router.url, 'https://jorgespaintingservicesllc.com');
     canonicalUrl.search = '';
     canonicalUrl.hash = '';
     this.meta.updateTag({ property: 'og:url', content: canonicalUrl.href });
