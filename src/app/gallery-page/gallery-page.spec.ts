@@ -55,6 +55,30 @@ describe('GalleryPage', () => {
     expect(before?.isAfter).not.toBeTrue();
   });
 
+  it('displays all cabin views, including the replacement after photo', () => {
+    const cards = fixture.nativeElement.querySelectorAll('app-gallery-card');
+    cards[4].querySelector('button').click();
+    fixture.detectChanges();
+
+    const dialog: HTMLDialogElement = fixture.nativeElement.querySelector('dialog');
+    const next = dialog.querySelector<HTMLButtonElement>('[aria-label="Next photo"]');
+    const paths = [
+      'photos/cabin-exterior/cabin_before.PNG',
+      'photos/cabin-exterior/cabin_after.PNG',
+      'photos/cabin-exterior/cabin_before1.PNG',
+      'photos/cabin-exterior/cabin_after1.PNG',
+    ];
+    paths.forEach((path, index) => {
+      expect(dialog.querySelector('img')?.getAttribute('src')).toBe(path);
+      if (index < paths.length - 1) {
+        next?.click();
+        fixture.detectChanges();
+      }
+    });
+    expect(dialog.querySelector('.preview-footer')?.textContent).toContain('After · 4 / 4');
+    dialog.close();
+  });
+
   it('opens the first photo and switches between both photos', () => {
     fixture.nativeElement.querySelector('app-gallery-card button').click();
     fixture.detectChanges();
