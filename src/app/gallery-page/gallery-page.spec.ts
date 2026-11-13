@@ -15,7 +15,7 @@ describe('GalleryPage', () => {
 
   it('groups the available photos into project cards without the removed porch set', () => {
     const cards = fixture.nativeElement.querySelectorAll('app-gallery-card');
-    expect(cards.length).toBe(7);
+    expect(cards.length).toBe(8);
     expect(cards[0].querySelectorAll('img').length).toBe(2);
     expect(cards[0].querySelector('img').getAttribute('src')).toBe('photos/firePlace_before.jpg');
     expect(cards[0].querySelector('.second-photo').getAttribute('src')).toBe('photos/firePlace_after.jpg');
@@ -29,8 +29,30 @@ describe('GalleryPage', () => {
       'Rustic Cabin Exterior Repaint',
       'Elevator Interior Restoration',
       'Outdoor Wood Furniture Restoration',
+      'Garage Cabinet Finishing',
     ]);
     expect(component.galleryProjects.flatMap((project) => project.photos).some((photo) => photo.src.includes('porch'))).toBeFalse();
+  });
+
+  it('loads every gallery image, including images in project folders', async () => {
+    const photos = component.galleryProjects.flatMap((project) => project.photos);
+    expect(new Set(photos.map((photo) => photo.src)).size).toBe(photos.length);
+
+    await Promise.all(photos.map((photo) => new Promise<void>((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve();
+      image.onerror = () => reject(new Error(`Failed to load gallery image: ${photo.src}`));
+      image.src = photo.src;
+    })));
+  });
+
+  it('includes the garage cabinet project and keeps before photos out of the after slideshow', () => {
+    const cabinet = component.galleryProjects.find((project) => project.title === 'Garage Cabinet Finishing');
+    expect(cabinet?.photos.length).toBe(4);
+    const historic = component.galleryProjects.find((project) => project.title === 'Historic Home Exterior Restoration');
+    const before = historic?.photos.find((photo) => photo.src.endsWith('historic_before1.PNG'));
+    expect(before?.label).toBe('Before');
+    expect(before?.isAfter).not.toBeTrue();
   });
 
   it('opens the first photo and switches between both photos', () => {
@@ -81,8 +103,8 @@ describe('GalleryPage', () => {
       photos: [
         { src: 'photos/door_before.jpg', alt: 'Door front', label: 'Front' },
         { src: 'photos/door_after.jpg', alt: 'Door side', label: 'Side' },
-        { src: 'photos/cabin_before.png', alt: 'Cabin detail', label: 'Detail' },
-        { src: 'photos/cabin_after.png', alt: 'Cabin wide view', label: 'Wide' },
+        { src: 'photos/cabin-exterior/cabin_before.PNG', alt: 'Cabin detail', label: 'Detail' },
+        { src: 'photos/cabin-exterior/cabin_after.PNG', alt: 'Cabin wide view', label: 'Wide' },
       ],
     }];
     fixture.detectChanges();
@@ -99,7 +121,7 @@ describe('GalleryPage', () => {
       dialog.querySelector<HTMLButtonElement>('[aria-label="Next photo"]')?.click();
     }
     fixture.detectChanges();
-    expect(dialog.querySelector('img')?.getAttribute('src')).toBe('photos/cabin_after.png');
+    expect(dialog.querySelector('img')?.getAttribute('src')).toBe('photos/cabin-exterior/cabin_after.PNG');
     expect(dialog.querySelector('img')?.getAttribute('alt')).toBe('Cabin wide view');
     expect(dialog.querySelector('.preview-footer')?.textContent).toContain('Wide · 4 / 4');
     dialog.querySelector<HTMLButtonElement>('[aria-label="Next photo"]')?.click();

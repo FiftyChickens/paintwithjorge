@@ -37,17 +37,17 @@ describe('HomePage', () => {
     fixture.detectChanges();
     const page: HTMLElement = fixture.nativeElement;
     expect(component.afterPhotos.map((photo) => photo.src)).toEqual([
-      'photos/Deck_after.png',
-      'photos/historic_after.png',
-      'photos/cabin_after.png',
-      'photos/elevator_after.png',
-      'photos/furniture_after.png',
+      'photos/deck-restoration/deck_after1.PNG',
+      'photos/historic-home-restoration/historic_after.PNG',
+      'photos/cabin-exterior/cabin_after.PNG',
+      'photos/elevator-restoration/elevator_after.PNG',
+      'photos/wooden-furniture-restoration/furniture_after.PNG',
     ]);
     expect(component.afterPhotos.length).toBe(5);
-    expect(page.querySelector('.hero-image img')?.getAttribute('src')).toBe('photos/Deck_after.png');
+    expect(page.querySelector('.hero-image img')?.getAttribute('src')).toBe('photos/deck-restoration/deck_after1.PNG');
     tick(5000);
     fixture.detectChanges();
-    expect(page.querySelector('.hero-image img')?.getAttribute('src')).toBe('photos/historic_after.png');
+    expect(page.querySelector('.hero-image img')?.getAttribute('src')).toBe('photos/historic-home-restoration/historic_after.PNG');
     page.querySelector<HTMLButtonElement>('.slideshow-control')?.click();
     tick(10000);
     fixture.detectChanges();
@@ -88,7 +88,7 @@ describe('HomePage', () => {
     dots[0].click();
     fixture.detectChanges();
     expect(component.isPlaying).toBeFalse();
-    expect(page.querySelector('.hero-image img')?.getAttribute('src')).toBe('photos/Deck_after.png');
+    expect(page.querySelector('.hero-image img')?.getAttribute('src')).toBe('photos/deck-restoration/deck_after1.PNG');
     expect(dots[0].getAttribute('aria-current')).toBe('true');
     dots[1].click();
     fixture.detectChanges();
